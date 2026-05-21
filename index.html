@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Humanoid-In-Homes Dataset</title>
+    <meta
+      name="description"
+      content="Humanoid-In-Homes: an in-the-wild household dataset with Unitree G1 whole-body manipulation."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">Humanoid-In-Homes</div>
+      <nav aria-label="Primary navigation">
+        <a href="#overview">Overview</a>
+        <a href="#hardware">Hardware</a>
+        <a href="#dataset">Dataset</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#citation">Citation</a>
+        <a href="#contributors">Contributors</a>
+      </nav>
+    </header>
+
+    <section class="hero-video" aria-label="Dataset demo video with title overlay">
+      <video id="heroVideo" autoplay loop muted playsinline preload="metadata">
+        <source src="assets/hero-preview.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div class="hero-overlay">
+        <div class="hero-copy-block">
+          <h1>Humanoid In Homes</h1>
+          <p>
+            An in-the-wild household dataset<br />
+            for whole-body humanoid robot learning.
+          </p>
+        </div>
+      </div>
+      <button class="video-toggle" type="button" aria-controls="heroVideo" aria-label="Pause video">
+        <span aria-hidden="true">II</span>
+      </button>
+    </section>
+
+    <main>
+      <section class="overview stacked-section" id="overview">
+        <div class="section-body">
+          <div class="section-label">Overview</div>
+          <h2>Built for learning from real homes, not lab-only scenes.</h2>
+          <p>
+            Humanoid-In-Homes focuses on task execution in natural household environments where layout,
+            object state, lighting, clutter, and human operating style vary from episode to episode.
+          </p>
+          <p>
+            The dataset is collected through <strong>human whole-body teleoperation</strong> of <strong>Unitree G1</strong>,
+            providing demonstrations for mobile manipulation, bimanual interaction, and long-horizon household skills.
+          </p>
+          <div class="overview-stats" aria-label="Dataset summary statistics">
+            <article>
+              <strong data-count="300">0+</strong>
+              <span>Hours</span>
+            </article>
+            <article>
+              <strong data-count="10">0+</strong>
+              <span>Tasks</span>
+            </article>
+            <article>
+              <strong data-count="4">0+</strong>
+              <span>Homes</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="split-section stacked-section" id="hardware">
+        <div class="section-body">
+          <div class="section-label">Hardware</div>
+          <h2>Acquisition setup</h2>
+          <p>
+            The hardware stack uses grippers for household manipulation, with a head camera
+            and wrist-mounted cameras for visual observations.
+          </p>
+          <a
+            class="text-link"
+            href="https://docs.google.com/spreadsheets/d/1Q86l0CCYhUdi6Fbt3Zc-nGvIsiJTaEM-0jSP_zmF8bM/edit?usp=sharing"
+          >
+            BOM for replicating the robot setup
+          </a>
+          <div class="hardware-layout">
+            <div class="hardware-board">
+              <figure>
+                <img src="assets/head.jpg" alt="Head-mounted stereo camera setup on the humanoid robot" />
+              </figure>
+              <figure>
+                <img src="assets/wrist.jpg" alt="Hand-mounted IR stereo camera and gripper setup" />
+              </figure>
+            </div>
+            <div class="hardware-highlights">
+              <article>
+                <div class="highlight-title">
+                  <span>01</span>
+                  <h3>Gripper manipulation</h3>
+                </div>
+                <p>End-effector grippers are used for household grasping, placing, and object interaction.</p>
+              </article>
+              <article>
+                <div class="highlight-title">
+                  <span>02</span>
+                  <h3>Head camera</h3>
+                </div>
+                <p>Head-mounted camera provides a wider scene view for task context and navigation.</p>
+              </article>
+              <article>
+                <div class="highlight-title">
+                  <span>03</span>
+                  <h3>Hand stereo IR cameras</h3>
+                </div>
+                <p>Wrist-mounted stereo IR cameras capture close-range observations around the robot hands.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="split-section stacked-section" id="dataset">
+        <div class="section-body">
+          <div class="section-label">Dataset</div>
+          <h2>What data is collected?</h2>
+          <p>
+            Each episode records human whole-body teleoperation of Unitree G1 in real homes,
+            combining camera streams, robot states, action traces, and language annotations.
+          </p>
+          <div class="data-showcase">
+            <article class="data-row">
+              <div class="data-row-copy">
+                <h3>Head camera</h3>
+                <ul class="data-tags">
+                  <li>RGB</li>
+                  <li>Stereo</li>
+                  <li>480P</li>
+                  <li>30 FPS</li>
+                </ul>
+              </div>
+              <figure class="data-row-media">
+                <video autoplay loop muted playsinline preload="metadata">
+                  <source src="assets/previews/head_color_stereo.mp4" type="video/mp4" />
+                </video>
+              </figure>
+            </article>
+            <article class="data-row">
+              <div class="data-row-copy">
+                <h3>Wrist camera</h3>
+                <ul class="data-tags">
+                  <li>RGB</li>
+                  <li>IR</li>
+                  <li>Stereo</li>
+                  <li>480P</li>
+                  <li>30 FPS</li>
+                </ul>
+              </div>
+              <figure class="data-row-media wrist-preview-grid" aria-label="Wrist camera RGB and stereo IR previews">
+                <video autoplay loop muted playsinline preload="metadata">
+                  <source src="assets/previews/wrist_rgb.mp4" type="video/mp4" />
+                </video>
+                <video autoplay loop muted playsinline preload="metadata">
+                  <source src="assets/previews/wrist_ir_left.mp4" type="video/mp4" />
+                </video>
+                <video autoplay loop muted playsinline preload="metadata">
+                  <source src="assets/previews/wrist_ir_right.mp4" type="video/mp4" />
+                </video>
+              </figure>
+            </article>
+            <article class="data-row">
+              <div class="data-row-copy">
+                <h3>State and actions</h3>
+                <ul class="data-tags">
+                  <li>29-DoF Joints</li>
+                  <li>End-Effector</li>
+                  <li>IMU</li>
+                  <li>Odometry</li>
+                </ul>
+              </div>
+              <figure class="data-row-media">
+                <video autoplay loop muted playsinline preload="metadata">
+                  <source src="assets/3d.mp4" type="video/mp4" />
+                </video>
+              </figure>
+            </article>
+            <article class="data-row">
+              <div class="data-row-copy">
+                <h3>Metadata</h3>
+                <ul class="data-tags">
+                  <li>Language annotation</li>
+                  <li>Episode info</li>
+                  <li>Camera intrinsics &amp; extrinsics</li>
+                </ul>
+              </div>
+              <figure class="data-row-media">
+                <iframe
+                  src="https://www.loom.com/embed/dd261b425b5a41cd83b72eb2221de1a9?autoplay=1&muted=1&hideEmbedTopBar=true&hide_share=true"
+                  title="Metadata preview"
+                  loading="lazy"
+                  allow="autoplay; fullscreen"
+                  allowfullscreen
+                ></iframe>
+              </figure>
+            </article>
+          </div>
+          <div class="rerun-preview">
+            <h3>Live demo</h3>
+            <a
+              class="text-link"
+              href="https://app.rerun.io/?url=https%3A%2F%2Fapp.rerun.io%2Fversion%2F0.31.4%2Fexamples%2Fdna.rrd"
+            >
+              Open the Rerun example in a new tab
+            </a>
+            <div class="rerun-frame">
+              <iframe
+                title="Rerun Web Viewer example"
+                src="https://app.rerun.io/?url=https%3A%2F%2Fapp.rerun.io%2Fversion%2F0.31.4%2Fexamples%2Fdna.rrd"
+                loading="lazy"
+                allow="fullscreen; clipboard-read; clipboard-write"
+              ></iframe>
+            </div>
+          </div>
+          <div class="distribution-block">
+            <h2>Task Coverage</h2>
+            <p class="muted">Overview of task coverage in the 300-hour release.</p>
+            <div class="coverage-grid" aria-label="Task-level dataset coverage charts">
+              <div class="chart-card chart-card-compact">
+                <div class="chart-card-header">
+                  <h3>300-hour task mix</h3>
+                  <span>By duration</span>
+                </div>
+                <div class="duration-chart-layout">
+                  <canvas id="taskDurationShareChart"></canvas>
+                  <ul class="duration-legend" aria-label="Task duration share legend">
+                    <li data-share="16.3% · 48.8h"><i style="background: #0c6b58"></i>Kitchen organization</li>
+                    <li data-share="15.2% · 45.5h"><i style="background: #37a18d"></i>Setting the table</li>
+                    <li data-share="12.6% · 37.9h"><i style="background: #d92d20"></i>Clean up the room</li>
+                    <li data-share="11.9% · 35.6h"><i style="background: #f08a5d"></i>Hang keys on a hook</li>
+                    <li data-share="10.3% · 30.7h"><i style="background: #4f6f9f"></i>Restocking fridge</li>
+                    <li data-share="10.0% · 29.9h"><i style="background: #8d6cab"></i>Hang hanger</li>
+                    <li data-share="8.9% · 26.7h"><i style="background: #c7a33a"></i>Sweep floor</li>
+                    <li data-share="7.5% · 22.5h"><i style="background: #5b6472"></i>Picking trash</li>
+                    <li data-share="7.5% · 22.4h"><i style="background: #87a96b"></i>Move pillow to sofa</li>
+                    <li data-share="4.4% · 13.1h"><i style="background: #b76e79"></i>Clothes washing</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="chart-card">
+                <div class="chart-card-header">
+                  <h3>Episodes by task</h3>
+                  <span>Episodes + avg length</span>
+                </div>
+                <canvas id="taskEpisodeChart"></canvas>
+              </div>
+              <div class="chart-card step-chart-card">
+                <div class="chart-card-header">
+                  <h3>Step Label Coverage</h3>
+                  <span>Fine-grained actions</span>
+                </div>
+                <div class="step-summary" aria-label="Step label summary">
+                  <article>
+                    <strong>152</strong>
+                    <span>Action step labels</span>
+                  </article>
+                  <article>
+                    <strong>104k</strong>
+                    <span>Step annotations</span>
+                  </article>
+                  <article>
+                    <strong>40</strong>
+                    <span>Labels shown</span>
+                  </article>
+                </div>
+                <div id="stepTreemap" class="step-treemap" aria-label="Top action step labels treemap"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="split-section stacked-section" id="roadmap">
+        <div class="section-body">
+          <div class="section-label">Roadmap</div>
+          <h2>Open Source timeline</h2>
+          <div class="timeline" aria-label="Release roadmap timeline">
+            <article data-date="2026-05-28">
+              <time datetime="2026-05-28">May 28, 2026</time>
+              <div>
+                <h3>Project announcement</h3>
+              </div>
+            </article>
+            <article data-date="2026-06-05">
+              <time datetime="2026-06">Early June 2026</time>
+              <div>
+                <h3>Release 300 hours of collected raw data</h3>
+              </div>
+            </article>
+            <article data-date="2026-06-25">
+              <time datetime="2026-06">Late June 2026</time>
+              <div>
+                <h3>Release 300-hour LeRobot-compatible dataset</h3>
+              </div>
+            </article>
+            <article data-date="2026-09-30">
+              <time datetime="2026-09">Late September 2026</time>
+              <div>
+                <h3>Release more tasks and homes</h3>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="citation stacked-section" id="citation">
+        <div class="section-body">
+          <div class="section-label">Citation</div>
+          <pre><code>@misc{humanoid_in_homes_2026,
+  title={Humanoid-In-Homes: A Large-Scale Dataset for Household Robot Learning},
+  author={Your Team},
+  year={2026},
+  howpublished={Project page}
+}</code></pre>
+        </div>
+      </section>
+
+      <section class="contacts stacked-section" id="contributors">
+        <div class="section-body">
+          <div class="section-label">Contributors</div>
+          <div class="contributor-logos" aria-label="Project contributors">
+            <a href="https://bitrobot.ai/" aria-label="Visit BitRobot website">
+              <img src="assets/contributor/bitrobot.png" alt="BitRobot logo" />
+            </a>
+            <a href="https://www.unitree.com/" aria-label="Visit Unitree website">
+              <img src="assets/contributor/unitree.png" alt="Unitree logo" />
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 Humanoid-In-Homes Dataset</p>
+      <a href="mailto:your-email@example.com">your-email@example.com</a>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+    <script>
+      (() => {
+        const video = document.querySelector("#heroVideo");
+        const toggle = document.querySelector(".video-toggle");
+
+        if (video && toggle) {
+          toggle.addEventListener("click", () => {
+            if (video.paused) {
+              video.play();
+              toggle.querySelector("span").textContent = "II";
+              toggle.setAttribute("aria-label", "Pause video");
+            } else {
+              video.pause();
+              toggle.querySelector("span").textContent = "▶";
+              toggle.setAttribute("aria-label", "Play video");
+            }
+          });
+        }
+
+        const counters = [...document.querySelectorAll("[data-count]")];
+        const animateCounter = (counter) => {
+          const target = Number(counter.dataset.count);
+          const duration = 950;
+          const startTime = performance.now();
+
+          const tick = (now) => {
+            const progress = Math.min(1, (now - startTime) / duration);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            counter.textContent = `${Math.round(target * eased)}+`;
+
+            if (progress < 1) {
+              requestAnimationFrame(tick);
+            } else {
+              counter.textContent = `${target}+`;
+            }
+          };
+
+          requestAnimationFrame(tick);
+        };
+
+        if (counters.length) {
+          const counterObserver = new IntersectionObserver(
+            (entries, observer) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                animateCounter(entry.target);
+                observer.unobserve(entry.target);
+              });
+            },
+            { threshold: 0.45 }
+          );
+
+          counters.forEach((counter) => counterObserver.observe(counter));
+        }
+
+        const timeline = document.querySelector(".timeline");
+        if (!timeline) return;
+
+        const items = [...timeline.querySelectorAll("article[data-date]")];
+        const dates = items.map((item) => new Date(`${item.dataset.date}T00:00:00`));
+        const now = new Date();
+        const start = dates[0];
+        const end = dates[dates.length - 1];
+        const total = end - start;
+        const elapsed = now - start;
+        const progress = total > 0 ? Math.min(1, Math.max(0, elapsed / total)) : 0;
+
+        timeline.style.setProperty("--timeline-progress", `${progress * 100}%`);
+
+        let currentIndex = -1;
+        dates.forEach((date, index) => {
+          if (now >= date) currentIndex = index;
+        });
+
+        const highlightIndex = currentIndex >= 0 ? currentIndex : 0;
+
+        items.forEach((item, index) => {
+          item.classList.toggle("is-complete", now >= dates[index]);
+          item.classList.toggle("is-current", index === highlightIndex);
+        });
+
+        const durationShareCanvas = document.querySelector("#taskDurationShareChart");
+        const episodeCanvas = document.querySelector("#taskEpisodeChart");
+        const stepTreemap = document.querySelector("#stepTreemap");
+        if ((durationShareCanvas || episodeCanvas) && window.Chart) {
+          const labels = [
+            "Kitchen organization",
+            "Setting the table",
+            "Clean up the room",
+            "Hang keys on a hook",
+            "Restocking fridge",
+            "Hang hanger",
+            "Sweep floor",
+            "Picking trash to rubbish bin",
+            "Move the pillow to the sofa",
+            "Clothes washing",
+          ];
+          const totalHours = [181.56, 168.88, 140.73, 131.95, 114.28, 110.68, 99.31, 83.68, 82.89, 48.68];
+          const avgMinutes = [10.19, 10.38, 10.5, 10.1, 10.17, 10.64, 9.88, 9.88, 10.21, 9.87];
+          const episodeCounts = [1069, 976, 804, 784, 674, 624, 603, 508, 487, 296];
+          const chartColors = [
+            "#0c6b58",
+            "#37a18d",
+            "#d92d20",
+            "#f08a5d",
+            "#4f6f9f",
+            "#8d6cab",
+            "#c7a33a",
+            "#5b6472",
+            "#87a96b",
+            "#b76e79",
+          ];
+          const totalObservedHours = totalHours.reduce((sum, value) => sum + value, 0);
+          const releaseHours = totalHours.map((value) => (value / totalObservedHours) * 300);
+
+          const taskMetaLabels = {
+            id: "taskMetaLabels",
+            afterDatasetsDraw(chart) {
+              const { ctx, chartArea, scales } = chart;
+              const dataset = chart.data.datasets[0];
+              const meta = chart.getDatasetMeta(0);
+
+              ctx.save();
+              ctx.textBaseline = "middle";
+              ctx.font = "700 12px Roboto, Arial, sans-serif";
+
+              meta.data.forEach((bar, index) => {
+                const value = dataset.data[index];
+                const countLabel = `${value.toLocaleString()} eps`;
+                const detailLabel = `${avgMinutes[index].toFixed(1)}m avg`;
+                const x = Math.min(scales.x.getPixelForValue(value) + 10, chartArea.right - 138);
+
+                ctx.fillStyle = "#0b0f18";
+                ctx.fillText(countLabel, x, bar.y - 8);
+                ctx.fillStyle = "#7b8490";
+                ctx.fillText(detailLabel, x, bar.y + 9);
+              });
+
+              ctx.restore();
+            },
+          };
+
+          if (durationShareCanvas) {
+            new Chart(durationShareCanvas, {
+              type: "doughnut",
+              data: {
+                labels,
+                datasets: [
+                  {
+                    label: "Hours in 300-hour release",
+                    data: releaseHours,
+                    backgroundColor: chartColors,
+                    borderColor: "#ffffff",
+                    borderWidth: 2,
+                    hoverOffset: 8,
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: "58%",
+                plugins: {
+                  legend: {
+                    display: false,
+                  },
+                  tooltip: {
+                    callbacks: {
+                      label: (context) => {
+                        const hours = releaseHours[context.dataIndex];
+                        const percent = (hours / 300) * 100;
+                        return `${context.label}: ${hours.toFixed(1)}h (${percent.toFixed(1)}%)`;
+                      },
+                    },
+                  },
+                },
+              },
+            });
+          }
+
+          if (episodeCanvas) {
+            new Chart(episodeCanvas, {
+              type: "bar",
+              data: {
+                labels,
+                datasets: [
+                  {
+                    label: "Episode count",
+                    data: episodeCounts,
+                    borderRadius: 6,
+                    borderSkipped: false,
+                    backgroundColor: chartColors.map((color) => `${color}dd`),
+                    hoverBackgroundColor: chartColors,
+                    barPercentage: 0.72,
+                    categoryPercentage: 0.72,
+                  },
+                ],
+              },
+              options: {
+                indexAxis: "y",
+                responsive: true,
+                maintainAspectRatio: false,
+                layout: {
+                  padding: { right: 150 },
+                },
+                plugins: {
+                  legend: { display: false },
+                  tooltip: {
+                    callbacks: {
+                      label: (context) => {
+                        const index = context.dataIndex;
+                        return [
+                          `${context.parsed.x.toLocaleString()} episodes`,
+                          `${avgMinutes[index].toFixed(1)} min avg duration`,
+                          `${releaseHours[index].toFixed(1)}h in 300-hour release`,
+                        ];
+                      },
+                    },
+                  },
+                },
+                scales: {
+                  x: {
+                    beginAtZero: true,
+                    suggestedMax: 1200,
+                    border: { display: false },
+                    grid: { color: "#e7ebf0" },
+                    ticks: {
+                      color: "#5b6472",
+                      callback: (value) => Number(value).toLocaleString(),
+                    },
+                  },
+                  y: {
+                    type: "category",
+                    border: { display: false },
+                    grid: { display: false },
+                    ticks: {
+                      color: "#0b0f18",
+                      font: { size: 11, weight: 700 },
+                    },
+                  },
+                },
+              },
+              plugins: [taskMetaLabels],
+            });
+          }
+
+        }
+
+        if (stepTreemap && window.d3) {
+          const stepData = [
+            { name: "Move to table", value: 11929 },
+            { name: "Move to bed", value: 5374 },
+            { name: "Dump trash", value: 4730 },
+            { name: "Move to trash can", value: 4139 },
+            { name: "Rotate leg to tighten", value: 3717 },
+            { name: "Pick trash", value: 3132 },
+            { name: "Rotate table base", value: 2385 },
+            { name: "Pick bowl", value: 2226 },
+            { name: "Pick spoon", value: 2178 },
+            { name: "Pick fork", value: 2153 },
+            { name: "Pick keychain", value: 2085 },
+            { name: "Pick plate", value: 2017 },
+            { name: "Move to hook", value: 1910 },
+            { name: "Hang keychain to hook", value: 1838 },
+            { name: "Move to sink", value: 1830 },
+            { name: "Move to clothing rack", value: 1797 },
+            { name: "Sweep trash", value: 1752 },
+            { name: "Move to trash", value: 1652 },
+            { name: "Pick chopsticks", value: 1562 },
+            { name: "Place chopsticks to sink", value: 1542 },
+            { name: "Pick clothes from laundry basket", value: 1518 },
+            { name: "Move to fridge", value: 1517 },
+            { name: "Pick table leg", value: 1467 },
+            { name: "Insert table leg to table base", value: 1464 },
+            { name: "Place spoon to sink", value: 1458 },
+            { name: "Place fork to sink", value: 1437 },
+            { name: "Move to countertop", value: 1368 },
+            { name: "Place plate to sink", value: 1284 },
+            { name: "Place bowl to sink", value: 1268 },
+            { name: "Place clothes to washer", value: 1256 },
+            { name: "Move to chair", value: 1229 },
+            { name: "Pick pillow", value: 1158 },
+            { name: "Close fridge", value: 1125 },
+            { name: "Open fridge", value: 1112 },
+            { name: "Rotate stool base", value: 1045 },
+            { name: "Move to laundry", value: 995 },
+            { name: "Pick book", value: 952 },
+            { name: "Organize blanket", value: 949 },
+            { name: "Place book to bed", value: 946 },
+            { name: "Organize pillow", value: 874 },
+          ];
+          const colorForStep = (name) => {
+            const lower = name.toLowerCase();
+            if (lower.startsWith("move")) return "#4f6f9f";
+            if (lower.startsWith("pick")) return "#0c6b58";
+            if (lower.startsWith("place")) return "#37a18d";
+            if (lower.startsWith("rotate") || lower.startsWith("insert")) return "#8d6cab";
+            if (lower.startsWith("open") || lower.startsWith("close")) return "#d92d20";
+            if (lower.startsWith("organize") || lower.startsWith("sweep")) return "#c7a33a";
+            return "#5b6472";
+          };
+          const renderTreemap = () => {
+            const rect = stepTreemap.getBoundingClientRect();
+            const width = Math.max(320, rect.width);
+            const height = Math.max(420, rect.height);
+            const total = stepData.reduce((sum, item) => sum + item.value, 0);
+            const root = d3
+              .hierarchy({ children: stepData })
+              .sum((d) => d.value)
+              .sort((a, b) => b.value - a.value);
+
+            d3.treemap().size([width, height]).paddingInner(3).round(true)(root);
+            stepTreemap.replaceChildren();
+
+            const tooltip = d3.select(stepTreemap).append("div").attr("class", "treemap-tooltip");
+            const svg = d3
+              .select(stepTreemap)
+              .append("svg")
+              .attr("viewBox", `0 0 ${width} ${height}`)
+              .attr("role", "img")
+              .attr("aria-label", "Treemap of top action step labels");
+
+            const nodes = svg
+              .selectAll("g")
+              .data(root.leaves())
+              .join("g")
+              .attr("transform", (d) => `translate(${d.x0},${d.y0})`);
+
+            nodes
+              .append("rect")
+              .attr("width", (d) => d.x1 - d.x0)
+              .attr("height", (d) => d.y1 - d.y0)
+              .attr("rx", 5)
+              .attr("fill", (d) => colorForStep(d.data.name))
+              .attr("opacity", 0.88);
+
+            nodes
+              .append("text")
+              .attr("x", 8)
+              .attr("y", 18)
+              .attr("fill", "#ffffff")
+              .attr("font-size", (d) => ((d.x1 - d.x0) > 140 && (d.y1 - d.y0) > 54 ? 12 : 10))
+              .attr("font-weight", 800)
+              .text((d) => ((d.x1 - d.x0) > 74 && (d.y1 - d.y0) > 30 ? d.data.name : ""));
+
+            nodes
+              .append("text")
+              .attr("x", 8)
+              .attr("y", 34)
+              .attr("fill", "rgba(255,255,255,0.82)")
+              .attr("font-size", 10)
+              .attr("font-weight", 700)
+              .text((d) => ((d.x1 - d.x0) > 100 && (d.y1 - d.y0) > 54 ? d.data.value.toLocaleString() : ""));
+
+            nodes
+              .on("mouseenter", (event, d) => {
+                const percent = (d.data.value / total) * 100;
+                tooltip
+                  .style("opacity", 1)
+                  .html(`<strong>${d.data.name}</strong><span>${d.data.value.toLocaleString()} annotations · ${percent.toFixed(1)}%</span>`);
+                d3.select(event.currentTarget).select("rect").attr("opacity", 1);
+              })
+              .on("mousemove", (event) => {
+                const bounds = stepTreemap.getBoundingClientRect();
+                tooltip
+                  .style("left", `${event.clientX - bounds.left + 12}px`)
+                  .style("top", `${event.clientY - bounds.top + 12}px`);
+              })
+              .on("mouseleave", (event) => {
+                tooltip.style("opacity", 0);
+                d3.select(event.currentTarget).select("rect").attr("opacity", 0.88);
+              });
+          };
+
+          renderTreemap();
+          window.addEventListener("resize", renderTreemap);
+        }
+      })();
+    </script>
+  </body>
+</html>
