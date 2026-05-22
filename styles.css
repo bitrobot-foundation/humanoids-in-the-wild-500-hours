@@ -380,15 +380,26 @@ h3 {
   border-radius: 8px;
   overflow: hidden;
   background: #ffffff;
+  height: 180px;
 }
 
 .data-row-media video {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
-  max-height: 190px;
+  height: 100%;
   object-fit: cover;
   background: #000000;
+}
+
+.metadata-media video {
+  object-fit: cover;
+  object-position: center 88%;
+  background: #ffffff;
+}
+
+.metadata-media {
+  aspect-ratio: 3 / 2;
+  height: auto;
 }
 
 .data-row-media iframe {
@@ -405,11 +416,11 @@ h3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1px;
   background: var(--line);
+  height: 150px;
 }
 
 .wrist-preview-grid video {
-  aspect-ratio: 4 / 3;
-  max-height: none;
+  min-width: 0;
   object-fit: cover;
 }
 
@@ -607,7 +618,7 @@ h3 {
 .coverage-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 30px;
+  gap: 38px;
   margin-top: 32px;
 }
 
@@ -619,8 +630,37 @@ h3 {
   background: #ffffff;
 }
 
+.episode-chart-card {
+  height: 610px;
+  margin-bottom: 24px;
+}
+
 .chart-card-compact {
   height: 500px;
+}
+
+.home-chart-card {
+  height: 420px;
+}
+
+.home-chart-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 34px;
+  align-items: center;
+  height: calc(100% - 38px);
+  padding: 0 0 24px;
+}
+
+.chart-card .home-chart-layout canvas {
+  justify-self: center;
+  max-width: 360px;
+  height: 100%;
+  min-height: 320px;
+}
+
+.home-legend {
+  gap: 12px;
 }
 
 .step-chart-card {
@@ -722,6 +762,13 @@ h3 {
   text-transform: uppercase;
 }
 
+.chart-note {
+  max-width: none;
+  margin: -6px 0 16px;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
 .step-summary {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -730,17 +777,16 @@ h3 {
 }
 
 .step-summary article {
-  padding: 12px 14px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #ffffff;
+  padding: 4px 0 4px 14px;
+  border-left: 3px solid var(--line);
+  background: transparent;
 }
 
 .step-summary strong {
   display: block;
-  margin-bottom: 3px;
+  margin-bottom: 6px;
   color: var(--ink);
-  font-size: 1.45rem;
+  font-size: 1.35rem;
   line-height: 1;
 }
 
@@ -753,7 +799,7 @@ h3 {
 
 .step-treemap {
   position: relative;
-  height: calc(100% - 122px);
+  height: calc(100% - 158px);
   min-height: 440px;
   overflow: hidden;
   border-radius: 8px;
@@ -801,6 +847,10 @@ h3 {
   display: block;
   width: 100%;
   height: calc(100% - 38px);
+}
+
+.chart-card > .chart-note + canvas {
+  height: calc(100% - 74px);
 }
 
 .timeline {
@@ -859,10 +909,6 @@ h3 {
 
 .timeline article:nth-child(3) {
   animation-delay: 180ms;
-}
-
-.timeline article:nth-child(4) {
-  animation-delay: 270ms;
 }
 
 .timeline article::before {
@@ -1126,7 +1172,7 @@ code {
   }
 
   .data-row-media video {
-    max-height: 260px;
+    max-height: none;
   }
 
   .data-row-media iframe {
@@ -1274,8 +1320,25 @@ code {
     padding: 14px 10px 12px;
   }
 
+  .episode-chart-card {
+    height: 650px;
+  }
+
   .chart-card-compact {
     height: 680px;
+  }
+
+  .home-chart-card {
+    height: 560px;
+  }
+
+  .home-chart-layout {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .home-legend {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .step-chart-card {
@@ -1287,6 +1350,6 @@ code {
   }
 
   .step-treemap {
-    height: calc(100% - 236px);
+    height: calc(100% - 272px);
   }
 }

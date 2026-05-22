@@ -201,14 +201,10 @@
                   <li>Camera intrinsics &amp; extrinsics</li>
                 </ul>
               </div>
-              <figure class="data-row-media">
-                <iframe
-                  src="https://www.loom.com/embed/dd261b425b5a41cd83b72eb2221de1a9?autoplay=1&muted=1&hideEmbedTopBar=true&hide_share=true"
-                  title="Metadata preview"
-                  loading="lazy"
-                  allow="autoplay; fullscreen"
-                  allowfullscreen
-                ></iframe>
+              <figure class="data-row-media metadata-media">
+                <video autoplay loop muted playsinline preload="metadata">
+                  <source src="assets/previews/metadata-screen-crop.mp4" type="video/mp4" />
+                </video>
               </figure>
             </article>
           </div>
@@ -216,70 +212,85 @@
             <h3>Live demo</h3>
             <a
               class="text-link"
-              href="https://app.rerun.io/?url=https%3A%2F%2Fapp.rerun.io%2Fversion%2F0.31.4%2Fexamples%2Fdna.rrd"
+              href="https://rerun.io/viewer?url=https%3A%2F%2Fhumanoid-assets.s3.ap-southeast-1.amazonaws.com%2Fhang_keys_on_a_hook_live_demo_episode_0002.rrd"
             >
-              Open the Rerun example in a new tab
+              Open the Rerun preview in a new tab
             </a>
             <div class="rerun-frame">
               <iframe
                 title="Rerun Web Viewer example"
-                src="https://app.rerun.io/?url=https%3A%2F%2Fapp.rerun.io%2Fversion%2F0.31.4%2Fexamples%2Fdna.rrd"
+                src="https://rerun.io/viewer?url=https%3A%2F%2Fhumanoid-assets.s3.ap-southeast-1.amazonaws.com%2Fhang_keys_on_a_hook_live_demo_episode_0002.rrd"
                 loading="lazy"
                 allow="fullscreen; clipboard-read; clipboard-write"
               ></iframe>
             </div>
           </div>
           <div class="distribution-block">
-            <h2>Task Coverage</h2>
-            <p class="muted">Overview of task coverage in the 300-hour release.</p>
+            <h2>Dataset Statistics</h2>
+            <p class="muted">Coverage across homes, tasks, and step-level annotations in the 300-hour dataset.</p>
             <div class="coverage-grid" aria-label="Task-level dataset coverage charts">
+              <div class="chart-card home-chart-card">
+                <div class="chart-card-header">
+                  <h3>Home Coverage</h3>
+                </div>
+                <div class="home-chart-layout">
+                  <canvas id="homeCoverageChart"></canvas>
+                  <ul class="duration-legend home-legend" aria-label="Home duration share legend">
+                    <li data-share="28.9% · 86.8h"><i style="background: #0c6b58"></i>Home 1</li>
+                    <li data-share="27.0% · 80.9h"><i style="background: #37a18d"></i>Home 2</li>
+                    <li data-share="23.3% · 70.0h"><i style="background: #4f6f9f"></i>Home 3</li>
+                    <li data-share="20.8% · 62.3h"><i style="background: #8d6cab"></i>Home 4</li>
+                  </ul>
+                </div>
+              </div>
               <div class="chart-card chart-card-compact">
                 <div class="chart-card-header">
-                  <h3>300-hour task mix</h3>
-                  <span>By duration</span>
+                  <h3>Task Coverage</h3>
                 </div>
                 <div class="duration-chart-layout">
                   <canvas id="taskDurationShareChart"></canvas>
                   <ul class="duration-legend" aria-label="Task duration share legend">
-                    <li data-share="16.3% · 48.8h"><i style="background: #0c6b58"></i>Kitchen organization</li>
-                    <li data-share="15.2% · 45.5h"><i style="background: #37a18d"></i>Setting the table</li>
-                    <li data-share="12.6% · 37.9h"><i style="background: #d92d20"></i>Clean up the room</li>
-                    <li data-share="11.9% · 35.6h"><i style="background: #f08a5d"></i>Hang keys on a hook</li>
-                    <li data-share="10.3% · 30.7h"><i style="background: #4f6f9f"></i>Restocking fridge</li>
-                    <li data-share="10.0% · 29.9h"><i style="background: #8d6cab"></i>Hang hanger</li>
-                    <li data-share="8.9% · 26.7h"><i style="background: #c7a33a"></i>Sweep floor</li>
-                    <li data-share="7.5% · 22.5h"><i style="background: #5b6472"></i>Picking trash</li>
-                    <li data-share="7.5% · 22.4h"><i style="background: #87a96b"></i>Move pillow to sofa</li>
-                    <li data-share="4.4% · 13.1h"><i style="background: #b76e79"></i>Clothes washing</li>
+                    <li data-share="19.4% · 58.2h"><i style="background: #0c6b58"></i>Setting the table</li>
+                    <li data-share="11.2% · 33.7h"><i style="background: #37a18d"></i>Hang keys on a hook</li>
+                    <li data-share="9.8% · 29.5h"><i style="background: #d92d20"></i>Picking trash</li>
+                    <li data-share="9.5% · 28.4h"><i style="background: #f08a5d"></i>Sweep floor</li>
+                    <li data-share="8.3% · 24.8h"><i style="background: #4f6f9f"></i>Kitchen organization</li>
+                    <li data-share="7.0% · 20.9h"><i style="background: #8d6cab"></i>Clothes washing</li>
+                    <li data-share="6.9% · 20.8h"><i style="background: #c7a33a"></i>Move pillow to sofa</li>
+                    <li data-share="6.3% · 19.0h"><i style="background: #5b6472"></i>Restocking fridge</li>
+                    <li data-share="5.3% · 15.8h"><i style="background: #87a96b"></i>Clean up the room</li>
+                    <li data-share="3.6% · 10.9h"><i style="background: #b76e79"></i>Hang hanger</li>
                   </ul>
                 </div>
               </div>
-              <div class="chart-card">
+              <div class="chart-card episode-chart-card">
                 <div class="chart-card-header">
-                  <h3>Episodes by task</h3>
-                  <span>Episodes + avg length</span>
+                  <h3>Task Episodes</h3>
                 </div>
+                <p class="chart-note">Episode counts and average duration for each task.</p>
                 <canvas id="taskEpisodeChart"></canvas>
               </div>
               <div class="chart-card step-chart-card">
                 <div class="chart-card-header">
-                  <h3>Step Label Coverage</h3>
-                  <span>Fine-grained actions</span>
+                  <h3>Step Labels</h3>
                 </div>
                 <div class="step-summary" aria-label="Step label summary">
                   <article>
-                    <strong>152</strong>
-                    <span>Action step labels</span>
+                    <strong>150+</strong>
+                    <span>Total step labels</span>
                   </article>
                   <article>
-                    <strong>104k</strong>
+                    <strong>100k+</strong>
                     <span>Step annotations</span>
                   </article>
                   <article>
-                    <strong>40</strong>
-                    <span>Labels shown</span>
+                    <strong>Top 40</strong>
+                    <span>Shown in treemap</span>
                   </article>
                 </div>
+                <p class="chart-note">
+                  Every robot step is annotated with a fine-grained action label. Hover tiles for details.
+                </p>
                 <div id="stepTreemap" class="step-treemap" aria-label="Top action step labels treemap"></div>
               </div>
             </div>
@@ -301,19 +312,13 @@
             <article data-date="2026-06-05">
               <time datetime="2026-06">Early June 2026</time>
               <div>
-                <h3>Release 300 hours of collected raw data</h3>
-              </div>
-            </article>
-            <article data-date="2026-06-25">
-              <time datetime="2026-06">Late June 2026</time>
-              <div>
-                <h3>Release 300-hour LeRobot-compatible dataset</h3>
+                <h3>Release 300 hours of data</h3>
               </div>
             </article>
             <article data-date="2026-09-30">
               <time datetime="2026-09">Late September 2026</time>
               <div>
-                <h3>Release more tasks and homes</h3>
+                <h3>Release more homes</h3>
               </div>
             </article>
           </div>
@@ -435,25 +440,26 @@
           item.classList.toggle("is-current", index === highlightIndex);
         });
 
+        const homeCoverageCanvas = document.querySelector("#homeCoverageChart");
         const durationShareCanvas = document.querySelector("#taskDurationShareChart");
         const episodeCanvas = document.querySelector("#taskEpisodeChart");
         const stepTreemap = document.querySelector("#stepTreemap");
-        if ((durationShareCanvas || episodeCanvas) && window.Chart) {
+        if ((homeCoverageCanvas || durationShareCanvas || episodeCanvas) && window.Chart) {
           const labels = [
-            "Kitchen organization",
             "Setting the table",
-            "Clean up the room",
             "Hang keys on a hook",
-            "Restocking fridge",
-            "Hang hanger",
-            "Sweep floor",
             "Picking trash to rubbish bin",
-            "Move the pillow to the sofa",
+            "Sweep floor",
+            "Kitchen organization",
             "Clothes washing",
+            "Move the pillow to the sofa",
+            "Restocking fridge",
+            "Clean up the room",
+            "Hang hanger",
           ];
-          const totalHours = [181.56, 168.88, 140.73, 131.95, 114.28, 110.68, 99.31, 83.68, 82.89, 48.68];
-          const avgMinutes = [10.19, 10.38, 10.5, 10.1, 10.17, 10.64, 9.88, 9.88, 10.21, 9.87];
-          const episodeCounts = [1069, 976, 804, 784, 674, 624, 603, 508, 487, 296];
+          const totalHours = [58.2, 33.7, 29.5, 28.4, 24.8, 20.9, 20.8, 19.0, 15.8, 10.9];
+          const episodeCounts = [3492, 2020, 1769, 1701, 1486, 1255, 1247, 1137, 950, 653];
+          const avgEpisodeSeconds = [29.9, 41.6, 27.2, 48.9, 99.2, 36.9, 41.9, 70.0, 151.3, 150.3];
           const chartColors = [
             "#0c6b58",
             "#37a18d",
@@ -468,9 +474,15 @@
           ];
           const totalObservedHours = totalHours.reduce((sum, value) => sum + value, 0);
           const releaseHours = totalHours.map((value) => (value / totalObservedHours) * 300);
+          const formatDuration = (seconds) => {
+            if (seconds < 60) return `${seconds.toFixed(0)}s`;
+            const minutes = Math.floor(seconds / 60);
+            const remainder = Math.round(seconds % 60);
+            return remainder ? `${minutes}m ${remainder}s` : `${minutes}m`;
+          };
 
-          const taskMetaLabels = {
-            id: "taskMetaLabels",
+          const createBarMetaLabels = (id, formatter) => ({
+            id,
             afterDatasetsDraw(chart) {
               const { ctx, chartArea, scales } = chart;
               const dataset = chart.data.datasets[0];
@@ -482,19 +494,59 @@
 
               meta.data.forEach((bar, index) => {
                 const value = dataset.data[index];
-                const countLabel = `${value.toLocaleString()} eps`;
-                const detailLabel = `${avgMinutes[index].toFixed(1)}m avg`;
+                const [primary, secondary] = formatter(value, index);
                 const x = Math.min(scales.x.getPixelForValue(value) + 10, chartArea.right - 138);
 
                 ctx.fillStyle = "#0b0f18";
-                ctx.fillText(countLabel, x, bar.y - 8);
+                ctx.fillText(primary, x, bar.y - 8);
                 ctx.fillStyle = "#7b8490";
-                ctx.fillText(detailLabel, x, bar.y + 9);
+                ctx.fillText(secondary, x, bar.y + 9);
               });
 
               ctx.restore();
             },
-          };
+          });
+
+          if (homeCoverageCanvas) {
+            const homeLabels = ["Home 1", "Home 2", "Home 3", "Home 4"];
+            const homeFullNames = ["Alpha + Charlie", "Echo", "Fox", "Godzilla"];
+            const homeReleaseHours = [86.8, 80.9, 70.0, 62.3];
+
+            new Chart(homeCoverageCanvas, {
+              type: "doughnut",
+              data: {
+                labels: homeLabels,
+                datasets: [
+                  {
+                    label: "Hours in 300-hour release",
+                    data: homeReleaseHours,
+                    backgroundColor: ["#0c6b58", "#37a18d", "#4f6f9f", "#8d6cab"],
+                    borderColor: "#ffffff",
+                    borderWidth: 2,
+                    hoverOffset: 8,
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: "58%",
+                plugins: {
+                  legend: { display: false },
+                  tooltip: {
+                    callbacks: {
+                      title: (items) => `${items[0].label} (${homeFullNames[items[0].dataIndex]})`,
+                      label: (context) => {
+                        const hours = homeReleaseHours[context.dataIndex];
+                        const percent = (hours / 300) * 100;
+                        return `${hours.toFixed(1)}h (${percent.toFixed(1)}%)`;
+                      },
+                    },
+                  },
+                },
+              },
+            });
+          }
 
           if (durationShareCanvas) {
             new Chart(durationShareCanvas, {
@@ -547,8 +599,8 @@
                     borderSkipped: false,
                     backgroundColor: chartColors.map((color) => `${color}dd`),
                     hoverBackgroundColor: chartColors,
-                    barPercentage: 0.72,
-                    categoryPercentage: 0.72,
+                    barPercentage: 0.64,
+                    categoryPercentage: 0.62,
                   },
                 ],
               },
@@ -557,7 +609,7 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 layout: {
-                  padding: { right: 150 },
+                  padding: { top: 2, right: 16, bottom: 20, left: 0 },
                 },
                 plugins: {
                   legend: { display: false },
@@ -566,9 +618,8 @@
                       label: (context) => {
                         const index = context.dataIndex;
                         return [
-                          `${context.parsed.x.toLocaleString()} episodes`,
-                          `${avgMinutes[index].toFixed(1)} min avg duration`,
-                          `${releaseHours[index].toFixed(1)}h in 300-hour release`,
+                          `${context.parsed.x.toLocaleString()} task episodes`,
+                          `Average duration: ${formatDuration(avgEpisodeSeconds[index])}`,
                         ];
                       },
                     },
@@ -591,12 +642,11 @@
                     grid: { display: false },
                     ticks: {
                       color: "#0b0f18",
-                      font: { size: 11, weight: 700 },
+                      font: { size: 14, weight: 700 },
                     },
                   },
                 },
               },
-              plugins: [taskMetaLabels],
             });
           }
 
@@ -604,46 +654,46 @@
 
         if (stepTreemap && window.d3) {
           const stepData = [
-            { name: "Move to table", value: 11929 },
-            { name: "Move to bed", value: 5374 },
-            { name: "Dump trash", value: 4730 },
-            { name: "Move to trash can", value: 4139 },
-            { name: "Rotate leg to tighten", value: 3717 },
-            { name: "Pick trash", value: 3132 },
-            { name: "Rotate table base", value: 2385 },
-            { name: "Pick bowl", value: 2226 },
-            { name: "Pick spoon", value: 2178 },
-            { name: "Pick fork", value: 2153 },
-            { name: "Pick keychain", value: 2085 },
-            { name: "Pick plate", value: 2017 },
-            { name: "Move to hook", value: 1910 },
-            { name: "Hang keychain to hook", value: 1838 },
-            { name: "Move to sink", value: 1830 },
-            { name: "Move to clothing rack", value: 1797 },
-            { name: "Sweep trash", value: 1752 },
-            { name: "Move to trash", value: 1652 },
-            { name: "Pick chopsticks", value: 1562 },
-            { name: "Place chopsticks to sink", value: 1542 },
-            { name: "Pick clothes from laundry basket", value: 1518 },
-            { name: "Move to fridge", value: 1517 },
-            { name: "Pick table leg", value: 1467 },
-            { name: "Insert table leg to table base", value: 1464 },
-            { name: "Place spoon to sink", value: 1458 },
-            { name: "Place fork to sink", value: 1437 },
-            { name: "Move to countertop", value: 1368 },
-            { name: "Place plate to sink", value: 1284 },
-            { name: "Place bowl to sink", value: 1268 },
-            { name: "Place clothes to washer", value: 1256 },
-            { name: "Move to chair", value: 1229 },
-            { name: "Pick pillow", value: 1158 },
-            { name: "Close fridge", value: 1125 },
-            { name: "Open fridge", value: 1112 },
-            { name: "Rotate stool base", value: 1045 },
-            { name: "Move to laundry", value: 995 },
-            { name: "Pick book", value: 952 },
-            { name: "Organize blanket", value: 949 },
-            { name: "Place book to bed", value: 946 },
-            { name: "Organize pillow", value: 874 },
+            { name: "Move to table", value: 11929, avgSec: 8.1 },
+            { name: "Move to bed", value: 5374, avgSec: 9.7 },
+            { name: "Dump trash", value: 4730, avgSec: 6.0 },
+            { name: "Move to trash can", value: 4139, avgSec: 7.8 },
+            { name: "Rotate leg to tighten", value: 3717, avgSec: 37.4 },
+            { name: "Pick trash", value: 3132, avgSec: 8.1 },
+            { name: "Rotate table base", value: 2385, avgSec: 10.3 },
+            { name: "Pick bowl", value: 2226, avgSec: 6.1 },
+            { name: "Pick spoon", value: 2178, avgSec: 7.0 },
+            { name: "Pick fork", value: 2153, avgSec: 7.2 },
+            { name: "Pick keychain", value: 2085, avgSec: 11.2 },
+            { name: "Pick plate", value: 2017, avgSec: 7.0 },
+            { name: "Move to hook", value: 1910, avgSec: 9.9 },
+            { name: "Hang keychain to hook", value: 1838, avgSec: 11.7 },
+            { name: "Move to sink", value: 1830, avgSec: 7.7 },
+            { name: "Move to clothing rack", value: 1797, avgSec: 8.5 },
+            { name: "Sweep trash", value: 1752, avgSec: 16.0 },
+            { name: "Move to trash", value: 1652, avgSec: 9.2 },
+            { name: "Pick chopsticks", value: 1562, avgSec: 7.5 },
+            { name: "Place chopsticks to sink", value: 1542, avgSec: 5.8 },
+            { name: "Pick clothes from laundry basket", value: 1518, avgSec: 13.2 },
+            { name: "Move to fridge", value: 1517, avgSec: 7.1 },
+            { name: "Pick table leg", value: 1467, avgSec: 15.1 },
+            { name: "Insert table leg to table base", value: 1464, avgSec: 26.3 },
+            { name: "Place spoon to sink", value: 1458, avgSec: 5.6 },
+            { name: "Place fork to sink", value: 1437, avgSec: 6.2 },
+            { name: "Move to countertop", value: 1368, avgSec: 8.0 },
+            { name: "Place plate to sink", value: 1284, avgSec: 9.2 },
+            { name: "Place bowl to sink", value: 1268, avgSec: 5.5 },
+            { name: "Place clothes to washer", value: 1256, avgSec: 9.2 },
+            { name: "Move to chair", value: 1229, avgSec: 9.2 },
+            { name: "Pick pillow", value: 1158, avgSec: 10.3 },
+            { name: "Close fridge", value: 1125, avgSec: 11.3 },
+            { name: "Open fridge", value: 1112, avgSec: 18.1 },
+            { name: "Rotate stool base", value: 1045, avgSec: 7.2 },
+            { name: "Move to laundry", value: 995, avgSec: 8.2 },
+            { name: "Pick book", value: 952, avgSec: 11.4 },
+            { name: "Organize blanket", value: 949, avgSec: 21.1 },
+            { name: "Place book to bed", value: 946, avgSec: 9.9 },
+            { name: "Organize pillow", value: 874, avgSec: 17.7 },
           ];
           const colorForStep = (name) => {
             const lower = name.toLowerCase();
@@ -714,6 +764,9 @@
                 tooltip
                   .style("opacity", 1)
                   .html(`<strong>${d.data.name}</strong><span>${d.data.value.toLocaleString()} annotations · ${percent.toFixed(1)}%</span>`);
+                tooltip
+                  .append("span")
+                  .text(`Avg duration ${d.data.avgSec.toFixed(1)}s`);
                 d3.select(event.currentTarget).select("rect").attr("opacity", 1);
               })
               .on("mousemove", (event) => {
