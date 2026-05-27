@@ -67,11 +67,11 @@
               <span>Hours</span>
             </article>
             <article>
-              <strong data-count="10">0+</strong>
+              <strong data-count="10">0</strong>
               <span>Tasks</span>
             </article>
             <article>
-              <strong data-count="4">0+</strong>
+              <strong data-count="4">0</strong>
               <span>Homes</span>
             </article>
           </div>
@@ -330,9 +330,9 @@
           <div class="section-label">Citation</div>
           <pre><code>@misc{humanoid_in_homes_2026,
   title={Humanoid-In-Homes: A Large-Scale Dataset for Household Robot Learning},
-  author={Your Team},
+  author={BitRobot and Unitree},
   year={2026},
-  howpublished={Project page}
+  howpublished={\url{https://frodobots-org.github.io/humanoid-in-homes/}}
 }</code></pre>
         </div>
       </section>
@@ -354,7 +354,7 @@
 
     <footer class="site-footer">
       <p>© 2026 Humanoid-In-Homes Dataset</p>
-      <a href="mailto:your-email@example.com">your-email@example.com</a>
+      <a href="mailto:contact@bitrobot.ai">contact@bitrobot.ai</a>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
@@ -381,18 +381,19 @@
         const counters = [...document.querySelectorAll("[data-count]")];
         const animateCounter = (counter) => {
           const target = Number(counter.dataset.count);
+          const suffix = counter.textContent.includes("+") ? "+" : "";
           const duration = 950;
           const startTime = performance.now();
 
           const tick = (now) => {
             const progress = Math.min(1, (now - startTime) / duration);
             const eased = 1 - Math.pow(1 - progress, 3);
-            counter.textContent = `${Math.round(target * eased)}+`;
+            counter.textContent = `${Math.round(target * eased)}${suffix}`;
 
             if (progress < 1) {
               requestAnimationFrame(tick);
             } else {
-              counter.textContent = `${target}+`;
+              counter.textContent = `${target}${suffix}`;
             }
           };
 
