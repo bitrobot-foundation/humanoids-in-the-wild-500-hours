@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Humanoid-In-Homes Dataset</title>
+    <title>In-The-Wild Humanoid Dataset</title>
     <meta
       name="description"
-      content="Humanoid-In-Homes: an in-the-wild household dataset with Unitree G1 whole-body manipulation."
+      content="In-The-Wild Humanoid Dataset: household robot learning data with Unitree G1 whole-body manipulation."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,13 +18,17 @@
   </head>
   <body>
     <header class="topbar">
-      <div class="brand">Humanoid-In-Homes</div>
+      <div class="brand">In-The-Wild Humanoid Dataset</div>
       <nav aria-label="Primary navigation">
+        <a class="hf-nav-link" href="https://huggingface.co/BitRobot" target="_blank" rel="noreferrer" aria-label="Open BitRobot on Hugging Face">
+          <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="" />
+        </a>
         <a href="#overview">Overview</a>
         <a href="#hardware">Hardware</a>
         <a href="#dataset">Dataset</a>
         <a href="#roadmap">Roadmap</a>
         <a href="#citation">Citation</a>
+        <a href="#license">License</a>
         <a href="#contributors">Contributors</a>
       </nav>
     </header>
@@ -36,9 +40,9 @@
       </video>
       <div class="hero-overlay">
         <div class="hero-copy-block">
-          <h1>Humanoid In Homes</h1>
+          <h1>In-The-Wild Humanoid Dataset</h1>
           <p>
-            An in-the-wild household dataset<br />
+            An in-the-wild dataset<br />
             for whole-body humanoid robot learning.
           </p>
         </div>
@@ -54,25 +58,32 @@
           <div class="section-label">Overview</div>
           <h2>Built for learning from real homes, not lab-only scenes.</h2>
           <p>
-            Humanoid-In-Homes focuses on task execution in natural household environments where layout,
+            In-The-Wild Humanoid Dataset focuses on task execution in natural environments where layout,
             object state, lighting, clutter, and human operating style vary from episode to episode.
           </p>
           <p>
             The dataset is collected through <strong>human whole-body teleoperation</strong> of <strong>Unitree G1</strong>,
             providing demonstrations for mobile manipulation, bimanual interaction, and long-horizon household skills.
           </p>
+          <p class="dataset-link-copy">
+            <a href="https://huggingface.co/BitRobot" target="_blank" rel="noreferrer">View the open-source dataset</a>.
+          </p>
           <div class="overview-stats" aria-label="Dataset summary statistics">
             <article>
-              <strong data-count="300">0+</strong>
+              <strong data-count="485">0+</strong>
               <span>Hours</span>
             </article>
             <article>
-              <strong data-count="10">0</strong>
+              <strong data-count="23" data-display="23K+">0+</strong>
+              <span>Episodes</span>
+            </article>
+            <article>
+              <strong data-count="10">0+</strong>
               <span>Tasks</span>
             </article>
             <article>
               <strong data-count="4">0</strong>
-              <span>Homes</span>
+              <span>Home</span>
             </article>
           </div>
         </div>
@@ -188,7 +199,7 @@
               </div>
               <figure class="data-row-media">
                 <video autoplay loop muted playsinline preload="metadata">
-                  <source src="assets/3d.mp4" type="video/mp4" />
+                  <source src="assets/clothes_washing_episode_0001_from10s_20s_3d.mp4" type="video/mp4" />
                 </video>
               </figure>
             </article>
@@ -212,14 +223,14 @@
             <h3>Live demo</h3>
             <a
               class="text-link"
-              href="https://rerun.io/viewer?url=https%3A%2F%2Fhumanoid-assets.s3.ap-southeast-1.amazonaws.com%2Fhang_keys_on_a_hook_live_demo_episode_0002.rrd"
+              href="https://rerun.io/viewer?url=https%3A%2F%2Fhumanoid-assets.s3.ap-southeast-1.amazonaws.com%2Fhumanoid-in-homes-live-demo.rrd"
             >
               Open the Rerun preview in a new tab
             </a>
             <div class="rerun-frame">
               <iframe
                 title="Rerun Web Viewer example"
-                src="https://rerun.io/viewer?url=https%3A%2F%2Fhumanoid-assets.s3.ap-southeast-1.amazonaws.com%2Fhang_keys_on_a_hook_live_demo_episode_0002.rrd"
+                src="https://rerun.io/viewer?url=https%3A%2F%2Fhumanoid-assets.s3.ap-southeast-1.amazonaws.com%2Fhumanoid-in-homes-live-demo.rrd"
                 loading="lazy"
                 allow="fullscreen; clipboard-read; clipboard-write"
               ></iframe>
@@ -227,19 +238,18 @@
           </div>
           <div class="distribution-block">
             <h2>Dataset Statistics</h2>
-            <p class="muted">Coverage across homes, tasks, and step-level annotations in the 300-hour dataset.</p>
             <div class="coverage-grid" aria-label="Task-level dataset coverage charts">
               <div class="chart-card home-chart-card">
                 <div class="chart-card-header">
                   <h3>Home Coverage</h3>
                 </div>
-                <div class="home-chart-layout">
+                <div class="duration-chart-layout">
                   <canvas id="homeCoverageChart"></canvas>
                   <ul class="duration-legend home-legend" aria-label="Home duration share legend">
-                    <li data-share="28.9% · 86.8h"><i style="background: #0c6b58"></i>Home 1</li>
-                    <li data-share="27.0% · 80.9h"><i style="background: #37a18d"></i>Home 2</li>
-                    <li data-share="23.3% · 70.0h"><i style="background: #4f6f9f"></i>Home 3</li>
-                    <li data-share="20.8% · 62.3h"><i style="background: #8d6cab"></i>Home 4</li>
+                    <li data-share="17.8% · 86.6h"><i style="background: #0c6b58"></i>Home 1</li>
+                    <li data-share="42.2% · 204.7h"><i style="background: #37a18d"></i>Home 7</li>
+                    <li data-share="19.8% · 96.3h"><i style="background: #4f6f9f"></i>Home 8</li>
+                    <li data-share="20.1% · 97.7h"><i style="background: #8d6cab"></i>Home 9</li>
                   </ul>
                 </div>
               </div>
@@ -250,16 +260,17 @@
                 <div class="duration-chart-layout">
                   <canvas id="taskDurationShareChart"></canvas>
                   <ul class="duration-legend" aria-label="Task duration share legend">
-                    <li data-share="19.4% · 58.2h"><i style="background: #0c6b58"></i>Setting the table</li>
-                    <li data-share="11.2% · 33.7h"><i style="background: #37a18d"></i>Hang keys on a hook</li>
-                    <li data-share="9.8% · 29.5h"><i style="background: #d92d20"></i>Picking trash</li>
-                    <li data-share="9.5% · 28.4h"><i style="background: #f08a5d"></i>Sweep floor</li>
-                    <li data-share="8.3% · 24.8h"><i style="background: #4f6f9f"></i>Kitchen organization</li>
-                    <li data-share="7.0% · 20.9h"><i style="background: #8d6cab"></i>Clothes washing</li>
-                    <li data-share="6.9% · 20.8h"><i style="background: #c7a33a"></i>Move pillow to sofa</li>
-                    <li data-share="6.3% · 19.0h"><i style="background: #5b6472"></i>Restocking fridge</li>
-                    <li data-share="5.3% · 15.8h"><i style="background: #87a96b"></i>Clean up the room</li>
-                    <li data-share="3.6% · 10.9h"><i style="background: #b76e79"></i>Hang hanger</li>
+                    <li data-share="22.7% · 110.0h"><i style="background: #0c6b58"></i>Building children table</li>
+                    <li data-share="14.2% · 68.8h"><i style="background: #37a18d"></i>Hang hanger</li>
+                    <li data-share="13.0% · 62.9h"><i style="background: #d92d20"></i>Clean up the room</li>
+                    <li data-share="9.6% · 46.6h"><i style="background: #f08a5d"></i>Setting the table</li>
+                    <li data-share="8.8% · 42.6h"><i style="background: #4f6f9f"></i>Restocking fridge</li>
+                    <li data-share="8.7% · 42.2h"><i style="background: #8d6cab"></i>Kitchen organization</li>
+                    <li data-share="6.2% · 30.3h"><i style="background: #c7a33a"></i>Hang keys on a hook</li>
+                    <li data-share="5.1% · 24.8h"><i style="background: #5b6472"></i>Move pillow to sofa</li>
+                    <li data-share="4.2% · 20.6h"><i style="background: #87a96b"></i>Sweep floor</li>
+                    <li data-share="4.0% · 19.3h"><i style="background: #b76e79"></i>Picking trash</li>
+                    <li data-share="3.5% · 17.2h"><i style="background: #2f80ed"></i>Clothes washing</li>
                   </ul>
                 </div>
               </div>
@@ -276,11 +287,11 @@
                 </div>
                 <div class="step-summary" aria-label="Step label summary">
                   <article>
-                    <strong>150+</strong>
+                    <strong>161</strong>
                     <span>Total step labels</span>
                   </article>
                   <article>
-                    <strong>100k+</strong>
+                    <strong>148k+</strong>
                     <span>Step annotations</span>
                   </article>
                   <article>
@@ -328,12 +339,23 @@
       <section class="citation stacked-section" id="citation">
         <div class="section-body">
           <div class="section-label">Citation</div>
-          <pre><code>@misc{humanoid_in_homes_2026,
-  title={Humanoid-In-Homes: A Large-Scale Dataset for Household Robot Learning},
+          <pre><code>@misc{in_the_wild_humanoid_dataset_2026,
+  title={In-The-Wild Humanoid Dataset: A Large-Scale In-The-Wild Dataset for Robot Learning},
   author={BitRobot and Unitree},
   year={2026},
-  howpublished={\url{https://frodobots-org.github.io/humanoid-in-homes/}}
+  howpublished={\url{https://frodobots-org.github.io/in-the-wild-humanoid-dataset/}}
 }</code></pre>
+        </div>
+      </section>
+
+      <section class="license-section stacked-section" id="license">
+        <div class="section-body">
+          <div class="section-label">License</div>
+          <p>
+            <a href="mailto:contact@bitrobot.ai">License Additional Humanoid Data</a>.
+            For additional data access, commercial licensing, or custom data collection, contact us at
+            <a href="mailto:contact@bitrobot.ai">contact@bitrobot.ai</a>.
+          </p>
         </div>
       </section>
 
@@ -350,10 +372,11 @@
           </div>
         </div>
       </section>
+
     </main>
 
     <footer class="site-footer">
-      <p>© 2026 Humanoid-In-Homes Dataset</p>
+      <p>© 2026 In-The-Wild Humanoid Dataset</p>
       <a href="mailto:contact@bitrobot.ai">contact@bitrobot.ai</a>
     </footer>
 
@@ -382,18 +405,19 @@
         const animateCounter = (counter) => {
           const target = Number(counter.dataset.count);
           const suffix = counter.textContent.includes("+") ? "+" : "";
+          const display = counter.dataset.display;
           const duration = 950;
           const startTime = performance.now();
 
           const tick = (now) => {
             const progress = Math.min(1, (now - startTime) / duration);
             const eased = 1 - Math.pow(1 - progress, 3);
-            counter.textContent = `${Math.round(target * eased)}${suffix}`;
+            counter.textContent = `${Math.round(target * eased).toLocaleString()}${suffix}`;
 
             if (progress < 1) {
               requestAnimationFrame(tick);
             } else {
-              counter.textContent = `${target}${suffix}`;
+              counter.textContent = display || `${target.toLocaleString()}${suffix}`;
             }
           };
 
@@ -446,21 +470,80 @@
         const episodeCanvas = document.querySelector("#taskEpisodeChart");
         const stepTreemap = document.querySelector("#stepTreemap");
         if ((homeCoverageCanvas || durationShareCanvas || episodeCanvas) && window.Chart) {
-          const labels = [
-            "Setting the table",
-            "Hang keys on a hook",
-            "Picking trash to rubbish bin",
-            "Sweep floor",
-            "Kitchen organization",
-            "Clothes washing",
-            "Move the pillow to the sofa",
-            "Restocking fridge",
-            "Clean up the room",
-            "Hang hanger",
-          ];
-          const totalHours = [58.2, 33.7, 29.5, 28.4, 24.8, 20.9, 20.8, 19.0, 15.8, 10.9];
-          const episodeCounts = [3492, 2020, 1769, 1701, 1486, 1255, 1247, 1137, 950, 653];
-          const avgEpisodeSeconds = [29.9, 41.6, 27.2, 48.9, 99.2, 36.9, 41.9, 70.0, 151.3, 150.3];
+          const totalCleanedHours = 485.3;
+          const taskStats = [
+            {
+                        "label": "Building children table",
+                        "episodes": 760,
+                        "hours": 110.0,
+                        "avgSec": 520.9
+            },
+            {
+                        "label": "Hang hanger",
+                        "episodes": 1481,
+                        "hours": 68.8,
+                        "avgSec": 167.2
+            },
+            {
+                        "label": "Clean up the room",
+                        "episodes": 1454,
+                        "hours": 62.9,
+                        "avgSec": 155.8
+            },
+            {
+                        "label": "Setting the table",
+                        "episodes": 5526,
+                        "hours": 46.6,
+                        "avgSec": 30.4
+            },
+            {
+                        "label": "Restocking fridge",
+                        "episodes": 1879,
+                        "hours": 42.6,
+                        "avgSec": 81.6
+            },
+            {
+                        "label": "Kitchen organization",
+                        "episodes": 1586,
+                        "hours": 42.2,
+                        "avgSec": 95.8
+            },
+            {
+                        "label": "Hang keys on a hook",
+                        "episodes": 2381,
+                        "hours": 30.3,
+                        "avgSec": 45.8
+            },
+            {
+                        "label": "Move pillow to sofa",
+                        "episodes": 1995,
+                        "hours": 24.8,
+                        "avgSec": 44.7
+            },
+            {
+                        "label": "Sweep floor",
+                        "episodes": 1877,
+                        "hours": 20.6,
+                        "avgSec": 39.5
+            },
+            {
+                        "label": "Picking trash",
+                        "episodes": 1805,
+                        "hours": 19.3,
+                        "avgSec": 38.5
+            },
+            {
+                        "label": "Clothes washing",
+                        "episodes": 2423,
+                        "hours": 17.2,
+                        "avgSec": 25.6
+            }
+];
+          const labels = taskStats.map((task) => task.label);
+          const totalHours = taskStats.map((task) => task.hours);
+          const episodeCounts = taskStats.map((task) => task.episodes);
+          const visualEpisodeCounts = episodeCounts.map((value) => Math.sqrt(value));
+          const avgEpisodeSeconds = taskStats.map((task) => task.avgSec);
           const chartColors = [
             "#0c6b58",
             "#37a18d",
@@ -472,9 +555,9 @@
             "#5b6472",
             "#87a96b",
             "#b76e79",
-          ];
-          const totalObservedHours = totalHours.reduce((sum, value) => sum + value, 0);
-          const releaseHours = totalHours.map((value) => (value / totalObservedHours) * 300);
+            "#2f80ed"
+];
+          const releaseHours = totalHours;
           const formatDuration = (seconds) => {
             if (seconds < 60) return `${seconds.toFixed(0)}s`;
             const minutes = Math.floor(seconds / 60);
@@ -509,9 +592,37 @@
           });
 
           if (homeCoverageCanvas) {
-            const homeLabels = ["Home 1", "Home 2", "Home 3", "Home 4"];
-            const homeFullNames = ["Alpha + Charlie", "Echo", "Fox", "Godzilla"];
-            const homeReleaseHours = [86.8, 80.9, 70.0, 62.3];
+            const homeStats = [
+              {
+                            "label": "Home 1",
+                            "full": "Alpha + Charlie",
+                            "hours": 86.6
+              },
+              {
+                            "label": "Home 7",
+                            "full": "Echo + Building Children Table",
+                            "hours": 204.7
+              },
+              {
+                            "label": "Home 8",
+                            "full": "Fox",
+                            "hours": 96.3
+              },
+              {
+                            "label": "Home 9",
+                            "full": "Godzilla",
+                            "hours": 97.7
+              }
+];
+            const homeLabels = homeStats.map((home) => home.label);
+            const homeFullNames = homeStats.map((home) => home.full);
+            const homeReleaseHours = homeStats.map((home) => home.hours);
+            const homeColors = [
+              "#0c6b58",
+              "#37a18d",
+              "#4f6f9f",
+              "#8d6cab"
+];
 
             new Chart(homeCoverageCanvas, {
               type: "doughnut",
@@ -519,9 +630,9 @@
                 labels: homeLabels,
                 datasets: [
                   {
-                    label: "Hours in 300-hour release",
+                    label: "Hours in selected cleaned dataset",
                     data: homeReleaseHours,
-                    backgroundColor: ["#0c6b58", "#37a18d", "#4f6f9f", "#8d6cab"],
+                    backgroundColor: homeColors,
                     borderColor: "#ffffff",
                     borderWidth: 2,
                     hoverOffset: 8,
@@ -539,7 +650,7 @@
                       title: (items) => `${items[0].label} (${homeFullNames[items[0].dataIndex]})`,
                       label: (context) => {
                         const hours = homeReleaseHours[context.dataIndex];
-                        const percent = (hours / 300) * 100;
+                        const percent = (hours / totalCleanedHours) * 100;
                         return `${hours.toFixed(1)}h (${percent.toFixed(1)}%)`;
                       },
                     },
@@ -556,7 +667,7 @@
                 labels,
                 datasets: [
                   {
-                    label: "Hours in 300-hour release",
+                    label: "Hours in selected cleaned dataset",
                     data: releaseHours,
                     backgroundColor: chartColors,
                     borderColor: "#ffffff",
@@ -577,7 +688,7 @@
                     callbacks: {
                       label: (context) => {
                         const hours = releaseHours[context.dataIndex];
-                        const percent = (hours / 300) * 100;
+                        const percent = (hours / totalCleanedHours) * 100;
                         return `${context.label}: ${hours.toFixed(1)}h (${percent.toFixed(1)}%)`;
                       },
                     },
@@ -595,7 +706,7 @@
                 datasets: [
                   {
                     label: "Episode count",
-                    data: episodeCounts,
+                    data: visualEpisodeCounts,
                     borderRadius: 6,
                     borderSkipped: false,
                     backgroundColor: chartColors.map((color) => `${color}dd`),
@@ -619,7 +730,7 @@
                       label: (context) => {
                         const index = context.dataIndex;
                         return [
-                          `${context.parsed.x.toLocaleString()} task episodes`,
+                          `${episodeCounts[index].toLocaleString()} task episodes`,
                           `Average duration: ${formatDuration(avgEpisodeSeconds[index])}`,
                         ];
                       },
@@ -629,12 +740,12 @@
                 scales: {
                   x: {
                     beginAtZero: true,
-                    suggestedMax: 1200,
+                    suggestedMax: Math.sqrt(Math.max(...episodeCounts)) * 1.08,
                     border: { display: false },
                     grid: { color: "#e7ebf0" },
                     ticks: {
                       color: "#5b6472",
-                      callback: (value) => Number(value).toLocaleString(),
+                      callback: (value) => Math.round(value * value).toLocaleString(),
                     },
                   },
                   y: {
@@ -655,47 +766,207 @@
 
         if (stepTreemap && window.d3) {
           const stepData = [
-            { name: "Move to table", value: 11929, avgSec: 8.1 },
-            { name: "Move to bed", value: 5374, avgSec: 9.7 },
-            { name: "Dump trash", value: 4730, avgSec: 6.0 },
-            { name: "Move to trash can", value: 4139, avgSec: 7.8 },
-            { name: "Rotate leg to tighten", value: 3717, avgSec: 37.4 },
-            { name: "Pick trash", value: 3132, avgSec: 8.1 },
-            { name: "Rotate table base", value: 2385, avgSec: 10.3 },
-            { name: "Pick bowl", value: 2226, avgSec: 6.1 },
-            { name: "Pick spoon", value: 2178, avgSec: 7.0 },
-            { name: "Pick fork", value: 2153, avgSec: 7.2 },
-            { name: "Pick keychain", value: 2085, avgSec: 11.2 },
-            { name: "Pick plate", value: 2017, avgSec: 7.0 },
-            { name: "Move to hook", value: 1910, avgSec: 9.9 },
-            { name: "Hang keychain to hook", value: 1838, avgSec: 11.7 },
-            { name: "Move to sink", value: 1830, avgSec: 7.7 },
-            { name: "Move to clothing rack", value: 1797, avgSec: 8.5 },
-            { name: "Sweep trash", value: 1752, avgSec: 16.0 },
-            { name: "Move to trash", value: 1652, avgSec: 9.2 },
-            { name: "Pick chopsticks", value: 1562, avgSec: 7.5 },
-            { name: "Place chopsticks to sink", value: 1542, avgSec: 5.8 },
-            { name: "Pick clothes from laundry basket", value: 1518, avgSec: 13.2 },
-            { name: "Move to fridge", value: 1517, avgSec: 7.1 },
-            { name: "Pick table leg", value: 1467, avgSec: 15.1 },
-            { name: "Insert table leg to table base", value: 1464, avgSec: 26.3 },
-            { name: "Place spoon to sink", value: 1458, avgSec: 5.6 },
-            { name: "Place fork to sink", value: 1437, avgSec: 6.2 },
-            { name: "Move to countertop", value: 1368, avgSec: 8.0 },
-            { name: "Place plate to sink", value: 1284, avgSec: 9.2 },
-            { name: "Place bowl to sink", value: 1268, avgSec: 5.5 },
-            { name: "Place clothes to washer", value: 1256, avgSec: 9.2 },
-            { name: "Move to chair", value: 1229, avgSec: 9.2 },
-            { name: "Pick pillow", value: 1158, avgSec: 10.3 },
-            { name: "Close fridge", value: 1125, avgSec: 11.3 },
-            { name: "Open fridge", value: 1112, avgSec: 18.1 },
-            { name: "Rotate stool base", value: 1045, avgSec: 7.2 },
-            { name: "Move to laundry", value: 995, avgSec: 8.2 },
-            { name: "Pick book", value: 952, avgSec: 11.4 },
-            { name: "Organize blanket", value: 949, avgSec: 21.1 },
-            { name: "Place book to bed", value: 946, avgSec: 9.9 },
-            { name: "Organize pillow", value: 874, avgSec: 17.7 },
-          ];
+            {
+                        "name": "move to table",
+                        "value": 51257,
+                        "avgSec": 7.0
+            },
+            {
+                        "name": "move to bed",
+                        "value": 24374,
+                        "avgSec": 8.8
+            },
+            {
+                        "name": "dump trash",
+                        "value": 19650,
+                        "avgSec": 4.5
+            },
+            {
+                        "name": "move to trash can",
+                        "value": 16143,
+                        "avgSec": 7.8
+            },
+            {
+                        "name": "pick trash",
+                        "value": 14412,
+                        "avgSec": 8.0
+            },
+            {
+                        "name": "move to sink",
+                        "value": 12865,
+                        "avgSec": 7.5
+            },
+            {
+                        "name": "move to fridge",
+                        "value": 12078,
+                        "avgSec": 7.0
+            },
+            {
+                        "name": "move to countertop",
+                        "value": 11536,
+                        "avgSec": 7.4
+            },
+            {
+                        "name": "pick bowl",
+                        "value": 9094,
+                        "avgSec": 5.9
+            },
+            {
+                        "name": "pick plate",
+                        "value": 8703,
+                        "avgSec": 6.7
+            },
+            {
+                        "name": "pick fork",
+                        "value": 7766,
+                        "avgSec": 7.1
+            },
+            {
+                        "name": "pick spoon",
+                        "value": 7697,
+                        "avgSec": 7.0
+            },
+            {
+                        "name": "move to clothing rack",
+                        "value": 7155,
+                        "avgSec": 7.7
+            },
+            {
+                        "name": "move to chair",
+                        "value": 6232,
+                        "avgSec": 8.1
+            },
+            {
+                        "name": "place clothes to washer",
+                        "value": 6097,
+                        "avgSec": 8.4
+            },
+            {
+                        "name": "pick keychain",
+                        "value": 5743,
+                        "avgSec": 11.0
+            },
+            {
+                        "name": "sweep trash",
+                        "value": 5650,
+                        "avgSec": 14.4
+            },
+            {
+                        "name": "move to hook",
+                        "value": 5481,
+                        "avgSec": 9.9
+            },
+            {
+                        "name": "rotate leg to tighten",
+                        "value": 5435,
+                        "avgSec": 37.6
+            },
+            {
+                        "name": "hang keychain to hook",
+                        "value": 5427,
+                        "avgSec": 9.1
+            },
+            {
+                        "name": "open fridge",
+                        "value": 5350,
+                        "avgSec": 13.9
+            },
+            {
+                        "name": "close fridge",
+                        "value": 5350,
+                        "avgSec": 8.2
+            },
+            {
+                        "name": "pick chopsticks",
+                        "value": 5346,
+                        "avgSec": 7.4
+            },
+            {
+                        "name": "pick clothes from laundry basket",
+                        "value": 5298,
+                        "avgSec": 11.2
+            },
+            {
+                        "name": "place chopsticks to sink",
+                        "value": 5024,
+                        "avgSec": 5.4
+            },
+            {
+                        "name": "organize blanket",
+                        "value": 5017,
+                        "avgSec": 16.9
+            },
+            {
+                        "name": "place plate to sink",
+                        "value": 4935,
+                        "avgSec": 5.7
+            },
+            {
+                        "name": "place bowl to sink",
+                        "value": 4890,
+                        "avgSec": 5.0
+            },
+            {
+                        "name": "pick pillow",
+                        "value": 4843,
+                        "avgSec": 8.9
+            },
+            {
+                        "name": "move to trash",
+                        "value": 4560,
+                        "avgSec": 8.4
+            },
+            {
+                        "name": "place spoon to sink",
+                        "value": 4544,
+                        "avgSec": 5.0
+            },
+            {
+                        "name": "organize pillow",
+                        "value": 4404,
+                        "avgSec": 12.9
+            },
+            {
+                        "name": "move to laundry",
+                        "value": 4380,
+                        "avgSec": 7.0
+            },
+            {
+                        "name": "pick cup",
+                        "value": 4227,
+                        "avgSec": 5.6
+            },
+            {
+                        "name": "place fork to sink",
+                        "value": 4123,
+                        "avgSec": 5.0
+            },
+            {
+                        "name": "rotate table base",
+                        "value": 3912,
+                        "avgSec": 10.3
+            },
+            {
+                        "name": "pick book",
+                        "value": 3829,
+                        "avgSec": 9.8
+            },
+            {
+                        "name": "hang clothes to clothing rack",
+                        "value": 3721,
+                        "avgSec": 5.4
+            },
+            {
+                        "name": "hang clothes to hanger",
+                        "value": 3692,
+                        "avgSec": 38.6
+            },
+            {
+                        "name": "remove clothes from hanger",
+                        "value": 3623,
+                        "avgSec": 14.8
+            }
+];
           const colorForStep = (name) => {
             const lower = name.toLowerCase();
             if (lower.startsWith("move")) return "#4f6f9f";

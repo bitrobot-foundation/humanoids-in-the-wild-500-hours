@@ -72,6 +72,27 @@ a {
   color: var(--ink);
 }
 
+.hf-nav-link {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.hf-nav-link img {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.hf-nav-link:hover {
+  border-color: var(--accent);
+  background: #f7fbfa;
+}
+
 main {
   width: min(1180px, calc(100% - 48px));
   margin: 0 auto;
@@ -107,7 +128,7 @@ main {
 }
 
 .hero-copy-block {
-  max-width: 620px;
+  max-width: 920px;
 }
 
 .kicker,
@@ -142,9 +163,10 @@ h1 {
 .hero-overlay h1 {
   margin: 0;
   color: #ffffff;
-  font-size: clamp(1.45rem, 3.5vw, 3.3rem);
+  font-size: clamp(1.15rem, 2.35vw, 2.25rem);
   font-weight: 400;
   line-height: 1.02;
+  white-space: nowrap;
   text-shadow: 0 8px 26px rgba(0, 0, 0, 0.72);
 }
 
@@ -284,16 +306,26 @@ h3 {
   color: var(--ink);
 }
 
+.dataset-link-copy {
+  margin: 6px 0 0;
+}
+
+.dataset-link-copy a {
+  color: var(--accent-dark);
+  font-weight: 800;
+  text-decoration: none;
+}
+
 .overview-stats {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
   margin-top: 34px;
 }
 
 .overview-stats article {
   position: relative;
-  padding: 6px 0 6px 18px;
+  padding: 6px 0 6px 14px;
   border-left: 3px solid var(--accent);
   background: transparent;
 }
@@ -302,7 +334,7 @@ h3 {
   display: block;
   margin-bottom: 8px;
   color: var(--ink);
-  font-size: clamp(2.4rem, 4.6vw, 3.6rem);
+  font-size: clamp(2rem, 3.4vw, 3rem);
   line-height: 0.95;
   font-weight: 900;
 }
@@ -631,37 +663,18 @@ h3 {
 }
 
 .episode-chart-card {
-  height: 610px;
+  height: 700px;
   margin-bottom: 24px;
 }
 
 .chart-card-compact {
-  height: 500px;
+  height: 620px;
 }
 
 .home-chart-card {
-  height: 420px;
+  height: 560px;
 }
 
-.home-chart-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 300px;
-  gap: 34px;
-  align-items: center;
-  height: calc(100% - 38px);
-  padding: 0 0 24px;
-}
-
-.chart-card .home-chart-layout canvas {
-  justify-self: center;
-  max-width: 360px;
-  height: 100%;
-  min-height: 320px;
-}
-
-.home-legend {
-  gap: 12px;
-}
 
 .step-chart-card {
   height: 680px;
@@ -1084,6 +1097,19 @@ code {
   color: var(--ink);
 }
 
+
+.license-section {
+  padding: 64px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.license-section p a {
+  color: var(--accent-dark);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+
 .contributor-logos {
   display: grid;
   grid-template-columns: repeat(2, minmax(180px, 1fr));
@@ -1113,6 +1139,59 @@ code {
   max-width: min(220px, 80%);
   max-height: 72px;
   object-fit: contain;
+}
+
+.licensing {
+  border-bottom: 0;
+}
+
+.licensing-layout {
+  display: grid;
+  gap: 22px;
+}
+
+.licensing-copy {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px 28px;
+  align-items: end;
+}
+
+.licensing-copy h2 {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+}
+
+.licensing-copy p {
+  margin-bottom: 0;
+}
+
+.licensing-email {
+  white-space: nowrap;
+}
+
+.licensing-email a {
+  color: var(--ink);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.licensing-email a:hover {
+  color: var(--accent-dark);
+}
+
+.licensing-embed {
+  overflow: hidden;
+  padding: 10px 0 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.licensing-embed iframe {
+  display: block;
+  width: 100%;
+  border: 0;
 }
 
 .site-footer {
@@ -1184,11 +1263,36 @@ code {
   }
 
   .overview-stats {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .overview-stats article {
+    padding-left: 10px;
+  }
+
+  .overview-stats strong {
+    font-size: clamp(1.35rem, 7vw, 2rem);
+  }
+
+  .overview-stats span {
+    font-size: 0.68rem;
   }
 
   .contributor-logos {
     grid-template-columns: 1fr;
+  }
+
+  .licensing-layout {
+    gap: 22px;
+  }
+
+  .licensing-copy {
+    grid-template-columns: 1fr;
+  }
+
+  .licensing-email {
+    white-space: normal;
   }
 
   .hardware-layout,
@@ -1269,6 +1373,7 @@ code {
 
   .hero-overlay h1 {
     font-size: 2rem;
+    white-space: normal;
   }
 
   h2 {
@@ -1332,14 +1437,6 @@ code {
     height: 560px;
   }
 
-  .home-chart-layout {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-
-  .home-legend {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 
   .step-chart-card {
     height: 760px;
