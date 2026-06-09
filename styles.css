@@ -1076,8 +1076,12 @@ code {
 }
 
 .contacts {
-  padding: 56px 0 72px;
+  padding: 56px 0 28px;
   border-bottom: 0;
+}
+
+.contacts + .overview {
+  padding-top: 32px;
 }
 
 .contacts div {
@@ -1112,7 +1116,7 @@ code {
 
 .contributor-logos {
   display: grid;
-  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  grid-template-columns: repeat(3, minmax(180px, 1fr));
   gap: 16px;
 }
 
