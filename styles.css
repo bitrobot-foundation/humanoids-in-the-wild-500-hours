@@ -1118,15 +1118,13 @@ code {
   display: grid;
   grid-template-columns: repeat(3, minmax(180px, 1fr));
   gap: 16px;
-  max-width: 900px;
-  margin: 0 auto;
 }
 
 .contributor-logos a {
   display: grid;
   place-items: center;
-  min-height: 108px;
-  padding: 20px;
+  min-height: 120px;
+  padding: 24px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #ffffff;
