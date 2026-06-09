@@ -72,27 +72,6 @@ a {
   color: var(--ink);
 }
 
-.hf-nav-link {
-  display: inline-grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  border: 1px solid var(--line-strong);
-  border-radius: 50%;
-  background: #ffffff;
-}
-
-.hf-nav-link img {
-  width: 18px;
-  height: 18px;
-  display: block;
-}
-
-.hf-nav-link:hover {
-  border-color: var(--accent);
-  background: #f7fbfa;
-}
-
 main {
   width: min(1180px, calc(100% - 48px));
   margin: 0 auto;

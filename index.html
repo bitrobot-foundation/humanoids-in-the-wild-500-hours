@@ -20,14 +20,12 @@
     <header class="topbar">
       <div class="brand">In-The-Wild Humanoid Dataset</div>
       <nav aria-label="Primary navigation">
-        <a class="hf-nav-link" href="http://huggingface.co/" target="_blank" rel="noreferrer" aria-label="Open Hugging Face">
-          <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="" />
-        </a>
         <a href="#contributors">Contributors</a>
         <a href="#overview">Overview</a>
         <a href="#hardware">Hardware</a>
         <a href="#dataset">Dataset</a>
         <a href="#roadmap">Roadmap</a>
+        <a href="#lerobot">LeRobot Integration</a>
         <a href="#citation">Citation</a>
         <a href="#license">License</a>
       </nav>
@@ -81,9 +79,6 @@
           <p>
             The dataset is collected through <strong>human whole-body teleoperation</strong> of <strong>Unitree G1</strong>,
             providing demonstrations for mobile manipulation, bimanual interaction, and long-horizon household skills.
-          </p>
-          <p class="dataset-link-copy">
-            <a href="http://huggingface.co/" target="_blank" rel="noreferrer">View the open-source dataset</a>.
           </p>
           <div class="overview-stats" aria-label="Dataset summary statistics">
             <article>
@@ -275,21 +270,26 @@
                 <div class="chart-card-header">
                   <h3>Task Episodes</h3>
                 </div>
-                <p class="chart-note">Episode counts and average duration for each task.</p>
                 <canvas id="taskEpisodeChart"></canvas>
+              </div>
+              <div class="chart-card episode-chart-card">
+                <div class="chart-card-header">
+                  <h3>Average Duration</h3>
+                </div>
+                <canvas id="taskAverageTimeChart"></canvas>
               </div>
               <div class="chart-card step-chart-card">
                 <div class="chart-card-header">
-                  <h3>Step Labels</h3>
+                  <h3>Subtask Labels</h3>
                 </div>
-                <div class="step-summary" aria-label="Step label summary">
+                <div class="step-summary" aria-label="Subtask label summary">
                   <article>
                     <strong>161</strong>
-                    <span>Total step labels</span>
+                    <span>Total subtask labels</span>
                   </article>
                   <article>
                     <strong>148k+</strong>
-                    <span>Step annotations</span>
+                    <span>Subtask annotation</span>
                   </article>
                   <article>
                     <strong>Top 40</strong>
@@ -297,9 +297,9 @@
                   </article>
                 </div>
                 <p class="chart-note">
-                  Every robot step is annotated with a fine-grained action label. Hover tiles for details.
+                  Every robot subtask is annotated with a fine-grained action label. Hover tiles for details.
                 </p>
-                <div id="stepTreemap" class="step-treemap" aria-label="Top action step labels treemap"></div>
+                <div id="stepTreemap" class="step-treemap" aria-label="Top action subtask labels treemap"></div>
               </div>
             </div>
           </div>
@@ -320,16 +320,44 @@
             <article data-date="2026-06-05">
               <time datetime="2026-06">Early June 2026</time>
               <div>
-                <h3>Release 300 hours of data</h3>
+                <h3>Release 400+ hour of data</h3>
               </div>
             </article>
             <article data-date="2026-09-30">
-              <time datetime="2026-09">Late September 2026</time>
+              <time datetime="2026-09">Phase 2</time>
               <div>
-                <h3>Release more homes</h3>
+                <h3>Release more tasks and environments</h3>
               </div>
             </article>
           </div>
+        </div>
+      </section>
+
+      <section class="citation stacked-section" id="lerobot">
+        <div class="section-body">
+          <div class="section-label">LeRobot Integration</div>
+          <p>
+            We host the dataset on Hugging Face in two formats: raw ROS bag / MCAP recordings and
+            a version in LeRobot format for robot learning workflows.
+          </p>
+          <p class="dataset-link-copy">
+            <a
+              href="https://huggingface.co/datasets/BitRobot/In-The-Wild-Humanoid-Dataset"
+              target="_blank"
+              rel="noreferrer"
+            >
+              View raw dataset
+            </a>
+          </p>
+          <p class="dataset-link-copy">
+            <a
+              href="https://huggingface.co/datasets/BitRobot/In-The-Wild-Humanoid-Dataset-LeRobot"
+              target="_blank"
+              rel="noreferrer"
+            >
+              View dataset in LeRobot format
+            </a>
+          </p>
         </div>
       </section>
 
@@ -450,8 +478,9 @@
 
         const durationShareCanvas = document.querySelector("#taskDurationShareChart");
         const episodeCanvas = document.querySelector("#taskEpisodeChart");
+        const averageTimeCanvas = document.querySelector("#taskAverageTimeChart");
         const stepTreemap = document.querySelector("#stepTreemap");
-        if ((durationShareCanvas || episodeCanvas) && window.Chart) {
+        if ((durationShareCanvas || episodeCanvas || averageTimeCanvas) && window.Chart) {
           const totalCleanedHours = 485.3;
           const taskStats = [
             {
@@ -642,10 +671,7 @@
                     callbacks: {
                       label: (context) => {
                         const index = context.dataIndex;
-                        return [
-                          `${episodeCounts[index].toLocaleString()} task episodes`,
-                          `Average duration: ${formatDuration(avgEpisodeSeconds[index])}`,
-                        ];
+                        return `${episodeCounts[index].toLocaleString()} task episodes`;
                       },
                     },
                   },
@@ -659,6 +685,63 @@
                     ticks: {
                       color: "#5b6472",
                       callback: (value) => Math.round(value * value).toLocaleString(),
+                    },
+                  },
+                  y: {
+                    type: "category",
+                    border: { display: false },
+                    grid: { display: false },
+                    ticks: {
+                      color: "#0b0f18",
+                      font: { size: 14, weight: 700 },
+                    },
+                  },
+                },
+              },
+            });
+          }
+
+          if (averageTimeCanvas) {
+            new Chart(averageTimeCanvas, {
+              type: "bar",
+              data: {
+                labels,
+                datasets: [
+                  {
+                    label: "Average time",
+                    data: avgEpisodeSeconds,
+                    borderRadius: 6,
+                    borderSkipped: false,
+                    backgroundColor: chartColors.map((color) => `${color}bb`),
+                    hoverBackgroundColor: chartColors,
+                    barPercentage: 0.64,
+                    categoryPercentage: 0.62,
+                  },
+                ],
+              },
+              options: {
+                indexAxis: "y",
+                responsive: true,
+                maintainAspectRatio: false,
+                layout: {
+                  padding: { top: 2, right: 16, bottom: 20, left: 0 },
+                },
+                plugins: {
+                  legend: { display: false },
+                  tooltip: {
+                    callbacks: {
+                      label: (context) => `Average duration: ${formatDuration(context.parsed.x)}`,
+                    },
+                  },
+                },
+                scales: {
+                  x: {
+                    beginAtZero: true,
+                    border: { display: false },
+                    grid: { color: "#e7ebf0" },
+                    ticks: {
+                      color: "#5b6472",
+                      callback: (value) => formatDuration(value),
                     },
                   },
                   y: {
@@ -909,7 +992,7 @@
               .append("svg")
               .attr("viewBox", `0 0 ${width} ${height}`)
               .attr("role", "img")
-              .attr("aria-label", "Treemap of top action step labels");
+              .attr("aria-label", "Treemap of top action subtask labels");
 
             const nodes = svg
               .selectAll("g")
