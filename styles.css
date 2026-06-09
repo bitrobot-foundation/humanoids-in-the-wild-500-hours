@@ -671,11 +671,6 @@ h3 {
   height: 620px;
 }
 
-.home-chart-card {
-  height: 560px;
-}
-
-
 .step-chart-card {
   height: 680px;
 }
@@ -1076,12 +1071,12 @@ code {
 }
 
 .contacts {
-  padding: 56px 0 28px;
+  padding: 64px 0 44px;
   border-bottom: 0;
 }
 
 .contacts + .overview {
-  padding-top: 32px;
+  padding-top: 40px;
 }
 
 .contacts div {
@@ -1125,8 +1120,8 @@ code {
 .contributor-logos a {
   display: grid;
   place-items: center;
-  min-height: 108px;
-  padding: 20px;
+  min-height: 192px;
+  padding: 42px 20px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #ffffff;
@@ -1438,11 +1433,6 @@ code {
   .chart-card-compact {
     height: 680px;
   }
-
-  .home-chart-card {
-    height: 560px;
-  }
-
 
   .step-chart-card {
     height: 760px;
