@@ -82,12 +82,16 @@
           </p>
           <div class="overview-stats" aria-label="Dataset summary statistics">
             <article>
-              <strong data-count="485">0+</strong>
+              <strong data-count="500">0+</strong>
               <span>Hours</span>
             </article>
             <article>
               <strong data-count="23" data-display="23K+">0+</strong>
               <span>Episodes</span>
+            </article>
+            <article>
+              <strong data-count="10" data-display="~10TB">0</strong>
+              <span>Data</span>
             </article>
             <article>
               <strong data-count="10">0+</strong>
@@ -313,20 +317,14 @@
           <div class="section-label">Roadmap</div>
           <h2>Open Source timeline</h2>
           <div class="timeline" aria-label="Release roadmap timeline">
-            <article data-date="2026-05-28">
-              <time datetime="2026-05-28">May 28, 2026</time>
-              <div>
-                <h3>Project announcement</h3>
-              </div>
-            </article>
             <article data-date="2026-06-05">
-              <time datetime="2026-06">Early June 2026</time>
+              <time datetime="2026-06">June 2026</time>
               <div>
-                <h3>Release 485+ hours of data</h3>
+                <h3>Release V1: 500+ hours of data</h3>
               </div>
             </article>
             <article data-date="2026-09-30">
-              <time datetime="2026-09">Phase 2</time>
+              <time datetime="2026-09">V2</time>
               <div>
                 <h3>Release more tasks and environments</h3>
               </div>
@@ -554,9 +552,6 @@
 ];
           const labels = taskStats.map((task) => task.label);
           const totalHours = taskStats.map((task) => task.hours);
-          const episodeCounts = taskStats.map((task) => task.episodes);
-          const visualEpisodeCounts = episodeCounts.map((value) => Math.sqrt(value));
-          const avgEpisodeSeconds = taskStats.map((task) => task.avgSec);
           const chartColors = [
             "#0c6b58",
             "#37a18d",
@@ -570,6 +565,19 @@
             "#b76e79",
             "#2f80ed"
 ];
+          const taskStatsWithColors = taskStats.map((task, index) => ({
+            ...task,
+            color: chartColors[index],
+          }));
+          const episodeStats = [...taskStatsWithColors].sort((a, b) => b.episodes - a.episodes);
+          const averageTimeStats = [...taskStatsWithColors].sort((a, b) => b.avgSec - a.avgSec);
+          const episodeLabels = episodeStats.map((task) => task.label);
+          const episodeCounts = episodeStats.map((task) => task.episodes);
+          const visualEpisodeCounts = episodeCounts.map((value) => Math.sqrt(value));
+          const episodeColors = episodeStats.map((task) => task.color);
+          const averageTimeLabels = averageTimeStats.map((task) => task.label);
+          const avgEpisodeSeconds = averageTimeStats.map((task) => task.avgSec);
+          const averageTimeColors = averageTimeStats.map((task) => task.color);
           const releaseHours = totalHours;
           const formatDuration = (seconds) => {
             if (seconds < 60) return `${seconds.toFixed(0)}s`;
@@ -646,15 +654,15 @@
             new Chart(episodeCanvas, {
               type: "bar",
               data: {
-                labels,
+                labels: episodeLabels,
                 datasets: [
                   {
                     label: "Episode count",
                     data: visualEpisodeCounts,
                     borderRadius: 6,
                     borderSkipped: false,
-                    backgroundColor: chartColors.map((color) => `${color}dd`),
-                    hoverBackgroundColor: chartColors,
+                    backgroundColor: episodeColors.map((color) => `${color}dd`),
+                    hoverBackgroundColor: episodeColors,
                     barPercentage: 0.64,
                     categoryPercentage: 0.62,
                   },
@@ -707,15 +715,15 @@
             new Chart(averageTimeCanvas, {
               type: "bar",
               data: {
-                labels,
+                labels: averageTimeLabels,
                 datasets: [
                   {
                     label: "Average time",
                     data: avgEpisodeSeconds,
                     borderRadius: 6,
                     borderSkipped: false,
-                    backgroundColor: chartColors.map((color) => `${color}bb`),
-                    hoverBackgroundColor: chartColors,
+                    backgroundColor: averageTimeColors.map((color) => `${color}bb`),
+                    hoverBackgroundColor: averageTimeColors,
                     barPercentage: 0.64,
                     categoryPercentage: 0.62,
                   },
