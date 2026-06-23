@@ -12,5 +12,5 @@ Then open:
 
 ## Notes
 
-- Static project page for HIW500: Humanoids In-the-Wild Dataset.
+- Static project page for HIW-500: Humanoids In-the-Wild Dataset.
 - The Rerun demo uses the fixed S3 key `humanoid-in-homes-live-demo.rrd`; update that object to swap demos without editing the page.

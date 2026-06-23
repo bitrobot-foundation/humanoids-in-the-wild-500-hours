@@ -149,6 +149,12 @@ h1 {
   text-shadow: 0 8px 26px rgba(0, 0, 0, 0.72);
 }
 
+.hero-overlay h1 span {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 350;
+  margin-left: 0.45em;
+}
+
 .hero-overlay p:not(.kicker) {
   max-width: 500px;
   margin: 10px 0 0;
