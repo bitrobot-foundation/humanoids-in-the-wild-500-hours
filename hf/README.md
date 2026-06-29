@@ -61,7 +61,7 @@ Each episode records human whole-body teleoperation of Unitree G1 in real homes.
 The dataset is hosted on Hugging Face in two formats:
 
 - Raw ROS bag / MCAP recordings: https://huggingface.co/datasets/BitRobot/HIW-500
-- LeRobot format: Coming Soon
+- LeRobot format: https://huggingface.co/datasets/BitRobot/HIW-500-LeRobot
 
 ## Citation
 
