@@ -1092,10 +1092,44 @@ code {
   border-bottom: 1px solid var(--line);
 }
 
+.license-section .section-body {
+  max-width: 860px;
+}
+
+.license-section .section-label,
+.license-section p {
+  margin: 0;
+}
+
+.license-open-copy {
+  max-width: 76ch;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.license-commercial-label {
+  display: inline-block;
+  margin-top: 18px;
+  color: var(--ink);
+  font-size: 1.08rem;
+  line-height: 1.35;
+}
+
 .license-section p a {
+  display: inline-block;
+  margin-top: 6px;
   color: var(--accent-dark);
   font-weight: 800;
   text-decoration: none;
+}
+
+.license-section p .license-inline-link {
+  display: inline;
+  margin-top: 0;
+}
+
+.license-section p a:hover {
+  color: var(--accent);
 }
 
 
